@@ -1,0 +1,8 @@
+Prerequisite:
+1. Python 2.7 is used for developing the solution.
+
+Following are the assumptions under which the architecture of the problem is defined:
+
+1.  If a item is removed by the vendor then it should be present at the top of the Csv and with a value of Price
+    equal to -1.
+2.  Price of all products will never be negative and greater than 999999.
