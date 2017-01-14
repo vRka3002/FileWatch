@@ -42,33 +42,37 @@ class Products:
                         temp = Global.productDict[row[C.I_CODE]]
                         # Check if product is present and is intended to be removed
                         if row[C.I_PRICE] == C.PRICE_ON_REMOVAL:
-                            if temp[C.MIN_VAL_INDEX].vendor==row[C.I_VENDOR]:
+                            if temp[C.MIN_VAL_INDEX].vendor == row[C.I_VENDOR]:
                                 Global.productDict[row[C.I_CODE]][C.MIN_VAL_INDEX] = Products(C.INVALID_MIN_PRICE)
-                            elif temp[C.MAX_VAL_INDEX].vendor==row[C.I_VENDOR]:
+                            elif temp[C.MAX_VAL_INDEX].vendor == row[C.I_VENDOR]:
                                 Global.productDict[row[C.I_CODE]][C.MAX_VAL_INDEX] = Products(C.INVALID_MAX_PRICE)
                         else:
                             # Check if current entry from csv is already present in product dictionary
                             if((temp[C.MIN_VAL_INDEX].vendor == row[C.I_VENDOR] and
-                                    temp[C.MIN_VAL_INDEX].price == row[C.I_PRICE]) or
+                                    float(temp[C.MIN_VAL_INDEX].price) == float(row[C.I_PRICE])) or
                                     (temp[C.MAX_VAL_INDEX].vendor == row[C.I_VENDOR] and
-                                    temp[C.MAX_VAL_INDEX].price == row[C.I_PRICE])):
+                                    float(temp[C.MAX_VAL_INDEX].price) == float(row[C.I_PRICE]))):
                                 pass
                             # else this is a new entry, proceed
                             else:
                                 # Replace min index value if current vendor offers less price
-                                if temp[C.MIN_VAL_INDEX].price > row[C.I_PRICE]:
+                                if float(temp[C.MIN_VAL_INDEX].price) > float(row[C.I_PRICE]) or \
+                                            temp[C.MIN_VAL_INDEX].vendor == row[C.I_VENDOR] or \
+                                            temp[C.MIN_VAL_INDEX].price == C.INVALID_MAX_PRICE:
                                     Global.productDict[row[C.I_CODE]][C.MIN_VAL_INDEX] = Products(
                                         row[C.I_PRICE], row[C.I_VENDOR], row[C.I_CODE],
                                         row[C.I_UNIT], row[C.I_UNIT], row[C.I_WEIGHT],
                                         row[C.I_ID]
                                     )
                                 # Replace max index value if current vendor offer greater price
-                                elif temp[C.MAX_VAL_INDEX].price < row[C.I_PRICE]:
+                                if float(temp[C.MAX_VAL_INDEX].price) < float(row[C.I_PRICE]) or \
+                                                temp[C.MAX_VAL_INDEX].vendor == row[C.I_VENDOR] or \
+                                                temp[C.MAX_VAL_INDEX].price == C.INVALID_MIN_PRICE:
                                     Global.productDict[row[C.I_CODE]][C.MAX_VAL_INDEX] = Products(
                                         row[C.I_PRICE], row[C.I_VENDOR], row[C.I_CODE],
                                         row[C.I_UNIT], row[C.I_UNIT], row[C.I_WEIGHT],
                                         row[C.I_ID]
-                                                                )
+                                    )
                     # Else product will be inserted for the first time
                     else:
                         # Form object with details new product

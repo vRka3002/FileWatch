@@ -8,10 +8,10 @@ MIN_VAL_INDEX = 0
 """ Index where object having maximum value for a product is stored """
 MAX_VAL_INDEX = 1
 """ Value of price if product is removed from CSV """
-PRICE_ON_REMOVAL = -1
+PRICE_ON_REMOVAL = '-1'
 """ Invalid price for creating dummy object of product class"""
-INVALID_MAX_PRICE = -1
-INVALID_MIN_PRICE = 999999
+INVALID_MAX_PRICE = '-1'
+INVALID_MIN_PRICE = '999999'
 
 """ Index values of different headers in csv file """
 I_ID = 0

@@ -5,4 +5,5 @@ Following are the assumptions under which the architecture of the problem is def
 
 1.  If a item is removed by the vendor then it should be present at the top of the Csv and with a value of Price
     equal to -1.
-2.  Price of all products will never be negative and greater than 999999.
+2.  All the items which are being changed should be placed at the top of the CSV.
+3.  Price of all products will never be negative and greater than 999999.

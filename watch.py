@@ -3,7 +3,6 @@
 """
 
 import sys
-import time
 from globals import Global
 from products import Products
 from watchdog.observers import Observer
@@ -34,7 +33,6 @@ class ChangeHandler(PatternMatchingEventHandler):
         Global.observer = Observer()
         Global.observer.schedule(ChangeHandler(), path=filepath)
         Global.observer.start()
-        print "Watching File"
 
     @staticmethod
     def stop_file_monitoring():
@@ -48,6 +46,11 @@ class ChangeHandler(PatternMatchingEventHandler):
 
 # Driver function
 if __name__ == '__main__':
+    # Check whether directory path and file path is provided
+    if len(sys.argv[1:]) < 2:
+        print "Please provide Directory path followed by File path"
+        exit()
+
     args = sys.argv[1:]  # Get path of the file
     file_location = args[0] if args else '.'  # Store path of file
     Global.csvPath = args[1]
