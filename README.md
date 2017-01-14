@@ -15,3 +15,7 @@ Installing from the code repository.
 $ git clone --recursive git://github.com/gorakhargosh/watchdog.git.  
 $ cd watchdog.  
 $ python setup.py install.  
+
+Format of Command -   
+$python watch.py {Path of directory containing file} {Path of product file}. 
+eg: $ python watch.py File/ File/products.csv
